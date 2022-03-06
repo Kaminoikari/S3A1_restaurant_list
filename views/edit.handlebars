@@ -1,0 +1,142 @@
+<div class="container mt-3">
+  <form
+    id="form"
+    action="/restaurants/{{restaurant._id}}/edit"
+    method="POST"
+    novalidate
+  >
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="name">餐廳中文名稱</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="i.e. 鼎泰豐"
+          value="{{restaurant.name}}"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="name_en">餐廳英文名稱</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name_en"
+          name="name_en"
+          value="{{restaurant.name_en}}"
+          placeholder="i.e. Din Tai Fung"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="category">餐廳類別</label>
+        <input
+          type="text"
+          class="form-control"
+          id="category"
+          name="category"
+          value="{{restaurant.category}}"
+          placeholder="i.e. 咖啡、美式、義式"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+      <div class="col-md-8 mb-3">
+        <label for="image">上傳照片網址</label>
+        <input
+          type="url"
+          class="form-control"
+          id="image"
+          name="image"
+          value="{{restaurant.image}}"
+          placeholder="https://images.unsplash.com/..."
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-8 mb-3">
+        <label for="location">詳細地址</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          name="location"
+          value="{{restaurant.location}}"
+          placeholder="i.e. 台北市大安區信義路二段194號"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="phone">電話號碼</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phone"
+          name="phone"
+          value="{{restaurant.phone}}"
+          placeholder="i.e. 02 2321 8928"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-8 mb-3">
+        <label for="google_map">Google地圖資訊</label>
+        <input
+          type="text"
+          class="form-control"
+          id="google_map"
+          name="google_map"
+          value="{{restaurant.google_map}}"
+          placeholder="i.e. https://goo.gl/maps/RC6PsmvgxsVnFdbSA"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="rating">評價</label>
+        <input
+          type="number"
+          class="form-control"
+          id="rating"
+          name="rating"
+          value="{{restaurant.rating}}"
+          placeholder="i.e. 4.2"
+          min="1"
+          max="5"
+          step="any"
+          required
+        />
+        <div class="invalid-feedback">請輸入內容 🙏</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">餐廳描述</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="3"
+        name="description"
+        placeholder="鼎泰豐（Din Tai Fung）是臺灣一家以麵食產銷為主的連鎖餐廳，以小籠包聞名。 1958年開設於臺北市信義路，最初爲流行而於1970年代起兼賣小籠包，從此發跡。 1996年，鼎泰豐拓展了日本市場，在日本迅速掀起一股小籠包熱，自此廣獲好評，曾爲《紐約時報》推薦爲“世界十大美食餐廳”之一。"
+      >{{restaurant.description}}</textarea>
+    </div>
+    <button
+      id="submitButton"
+      class="btn btn-primary"
+      type="submit"
+    >完成編輯</button>
+  </form>
+  <a href="/" class="pb-5">
+    <button class="btn btn-danger">取消</button>
+  </a>
+</div>
