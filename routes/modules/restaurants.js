@@ -3,20 +3,24 @@ const router = express.Router()
 
 const Restaurant = require('../../models/restaurant.js')
 
+const bodyParser = require('body-parser')
+router.use(bodyParser.urlencoded({ extended: true }))
 
-// Add new restaurant page
+
+// 新增餐廳
 router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-router.post('/', (req, res) => {
+router.post('/new', (req, res) => {
   const data = req.body
-  return Restaurant.create(data)
-    .then(res.redirect('/'))
-    .catch(error => console.log('error'))
+  return Restaurant
+  .create (data)
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
 })
 
-// Detail page
+// Detail頁面
 router.get('/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
@@ -26,7 +30,7 @@ router.get('/:id', (req, res) => {
 })
 
 
-// Edit restaurant page
+// 修改餐廳頁面
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -48,7 +52,7 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// Delete restaurant function
+// 刪除餐廳功能
 router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)

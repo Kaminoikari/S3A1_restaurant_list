@@ -14,29 +14,25 @@ router.get('/', (req, res) => {
 
 // 搜尋欄
 router.get('/search', (req, res) => {
-  const keyword = req.query.keyword.replace(/ /g, '').toLowerCase()
-  return Restaurant
-  .find()
-  .lean()
-  .sort ({ _id: 'desc' })
-  .then ((restaurants) => {
-    const filterRestaurants = restaurants.filter(
-        (restaurant) =>
-          restaurant.name.toLowerCase().includes(keyword) ||
-          restaurant.category.toLowerCase().includes(keyword)
-      )
-      if (!filterRestaurants.length) {
-        res.render('notFound', { keyword: req.query.keyword })
-      } else {
-        res.render('index', {
-          restaurants: filterRestaurants,
-          keyword: req.query.keyword,
-        })
-      }
-    })
-    .catch((error) => {
-      console.log('error')
-    })
+ if (!req.query.keywords) {
+    Restaurant.find()
+      .lean()
+      .then(restaurant => res.render('index', { restaurant }))
+
+  } else {
+
+    const keywords = req.query.keywords
+    const keyword = req.query.keywords.trim().toLowerCase()
+    Restaurant.find() // current restaurant list
+      .lean()
+      .then(restaurant => {
+        const restaurantSearchResults = restaurant.filter((data) => { return data.name.toLowerCase().includes(keyword) || data.category.toLowerCase().includes(keyword) })
+        return restaurantSearchResults
+      })
+      
+      .then((restaurantSearchResults) => res.render('index', { restaurant: restaurantSearchResults, keyword: keywords }))
+      .catch(error => console.log('error'))
+  }
 })
 
 module.exports = router
