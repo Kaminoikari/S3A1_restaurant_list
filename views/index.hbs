@@ -1,68 +1,77 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
-    <div class="search-bar-inner">
+    <div class="search-bar-inner ">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
+
         <div class="input-group">
-          <input
-            type="text"
-            name="keywords"
-            class="form-control"
-            placeholder="輸入餐廳、分類"
-            aria-label="Restaurant Name..."
-            aria-describedby="search-button"
-            value="{{keywords}}"
-          />
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i
-                class="fas fa-search"
-              ></i></button>
+          <input type="text" name="keywords" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+            value="{{keyword}}" aria-describedby="search-button">
+          <div class="input-group-append ">
+            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
-        </div>
-      </form>
+       </form>
+
+
     </div>
   </div>
 </div>
 
+
 <!-- restaurant list -->
-<div class="container mt-5">
+{{#if restaurant.length}}
+<div class="container mt-4">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
-        {{#each restaurantsData}}
 
-          <div class="card mb-3">
-            <img
-              class="card-img-top"
-              src="{{this.image}}"
-              alt="{{this.name}}"
-            />
+        {{#each restaurant}}
+        <div class="card mb-3">
+
+          <a href="/restaurants/{{this._id}}" class="text-secondary">
+
+            <img class="card-img-top" src="{{this.image}}" alt="image_{{this.name}}">
+
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
-
               <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i>
-                {{this.category}}
+                <i class="fas fa-utensils pr-2"></i> {{this.category}}
+              </div>
+              <div>
+                <span class="badge badge-pill badge-danger font-weight-normal">
+                  {{this.rating}}
+                  <i class="fas fa-star fa-xs"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="card-footer mt-2 d-flex justify-content-between">
+              <div class="container mt-2 p-0 ml-0" style="">
+                <a class="text-secondary" href="/restaurants/{{this._id}}/edit">Edit</a>
+
+                <form action="/restaurants/{{this._id}}?_method=delete" method="post" style="display: inline; "
+                  class="mx-1">
+                  <button type="submit" class="text-secondary"
+                    style=" border:none; background-color:transparent; :focus:border: none;"
+                    id="delete-btn">Delete</button>
+                </form>
               </div>
 
-              <div class="mt-3">
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                {{this.rating}}
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-              <a href="/restaurants/{{this._id}}/edit" class="btn btn-danger">Edit</a>
               <a href="/restaurants/{{this._id}}" class="btn btn-danger">Detail</a>
-              <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
             </div>
-          </div>
+
+          </a>
         </div>
         {{/each}}
+
       </div>
     </div>
   </div>
 </div>
 
-
+{{else}}
+<div class="mt-5 text-center" style="height: 300px;">
+  <p class=" text-danger font-italic" style="font-size: 30px; padding-top: 70px;">抱歉，查無"{{keyword}}"的相關資料！</p>
+</div>
+{{/if}}
