@@ -4,15 +4,7 @@
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
 
-
-      <div class="mb-5">
-        <a class="text-danger font-weight-normal" style="font-size: 20px;" href="/">
-          < Back</a>
-      </div>
-
-
-
-      <form action="/restaurants/new" method="post" novalidate>
+      <form action="/restaurants" method="post">
 
         <div class="form-group row mt-3">
           <label for="restaurant-name" class="col-sm-3 col-form-label text-secondary text-right">
@@ -94,7 +86,12 @@
           class="ml-5 mt-2 btn btn-danger" id="submit-button" 
           type="submit"
           >確定送出</button>
+          <button class="ml-5 mt-2 btn btn-primary" id="back-button" type="submit" href="/">
+          Back</button>
         </div>
+           
+        
+      </div>
 
       </form>
     </div>

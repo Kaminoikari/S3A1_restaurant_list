@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Restaurant = require('../../models/restaurant.js')
+const Restaurant = require('../../models/restaurant')
 
 
 // 新增餐廳
@@ -9,20 +9,20 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-router.post('/new', (req, res) => {
-  const data = req.body
-  return Restaurant
-  .create (data)
+router.post('/', (req, res) => {
+  const addItems = req.body
+  return Restaurant.create (addItems)
     .then(() => res.redirect('/'))
     .catch((error) => console.log(error))
 })
 
-// Detail頁面
+// 瀏覽特定餐廳Detail
 router.get('/:id', (req, res) => {
   const id = req.params.id
-  Restaurant.findById(id)
+  return Restaurant
+    .findById(id)
     .lean()
-    .then(restaurant => res.render('detail', { restaurant }))
+    .then((restaurant) => res.render('detail', { restaurant }))
     .catch(error => console.log(error))
 })
 
@@ -36,6 +36,7 @@ router.get('/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 更新餐廳頁面
 router.put('/:id', (req, res) => {
   const id = req.params.id
 
