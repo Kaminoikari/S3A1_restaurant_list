@@ -3,9 +3,6 @@ const router = express.Router()
 
 const Restaurant = require('../../models/restaurant.js')
 
-const bodyParser = require('body-parser')
-router.use(bodyParser.urlencoded({ extended: true }))
-
 
 // 新增餐廳
 router.get('/new', (req, res) => {

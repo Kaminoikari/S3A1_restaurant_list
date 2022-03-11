@@ -23,7 +23,8 @@ router.get('/search', (req, res) => {
 
     const keywords = req.query.keywords
     const keyword = req.query.keywords.trim().toLowerCase()
-    Restaurant.find() // current restaurant list
+
+    Restaurant.find() // Current restaurant list
       .lean()
       .then(restaurant => {
         const restaurantSearchResults = restaurant.filter((data) => { return data.name.toLowerCase().includes(keyword) || data.category.toLowerCase().includes(keyword) })
