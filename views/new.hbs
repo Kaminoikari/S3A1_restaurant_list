@@ -18,11 +18,21 @@
           </div>
         </div>
 
+        <div class="form-group row mt-3">
+          <label for="restaurant-eng-name" class="col-sm-3 col-form-label text-secondary text-right">
+            英文名稱：
+          </label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="name_en" name="name_en" placeholder="請輸入餐廳英文名稱">
+          </div>
+        </div>
+
+
 
         <div class="form-group row mt-3">
           <label for="restaurant-category" class="col-sm-3 col-form-label text-secondary text-right ">餐廳類型：</label>
           <div class="col-sm-9">
-            <input list="category-options" class="form-control" name="category" id="restaurant-category"
+            <input list="category-options" class="form-control" name="category" id="restaurant-category" placeholder="請選擇餐廳類別"
               value="{{restaurant.category}}">
             <datalist id="category-options">
               <option value="美式料理">美式料理
@@ -86,7 +96,7 @@
           class="ml-5 mt-2 btn btn-danger" id="submit-button" 
           type="submit"
           >確定送出</button>
-          <button class="ml-5 mt-2 btn btn-primary" id="back-button" type="submit" href="/">
+          <button class="ml-5 mt-2 btn btn-primary" id="back-button" onclick="history.back()">
           Back</button>
         </div>
            
