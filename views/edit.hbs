@@ -17,10 +17,6 @@
             </form>
       </div>
 
-
-
-
-
       <form action="/restaurants/{{restaurant._id}}/?_method=put" method="post">
 
         <div class="form-group row mt-3">
@@ -32,7 +28,7 @@
             <input type="text" class="form-control" id="restaurant-name" name="name" placeholder="請輸入餐廳名稱"
               value="{{restaurant.name}}" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback">請輸入餐聽名稱：</div>
+            <div class="invalid-feedback">請輸入餐廳名稱：</div>
           </div>
         </div>
 
@@ -41,7 +37,7 @@
           <label for="restaurant-category" class="col-sm-3 col-form-label text-secondary text-right ">類型：</label>
           <div class="col-sm-9">
             <input list="category-options" class="form-control" name="category" id="restaurant-category"
-              value="{{restaurant.category}}">
+              value="{{restaurant.category}}" required>
             <datalist id="category-options">
               <option value="美式料理">美式料理
               <option value="日本料理">日本料理
@@ -57,7 +53,7 @@
           <label for="restaurant-image" class="col-sm-3 col-form-label text-secondary text-right">照片：</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" id="restaurant-image" name="image" placeholder="請加入照片連結：http://..."
-              value="{{restaurant.image}}">
+              value="{{restaurant.image}}" required>
           </div>
         </div>
 
@@ -65,7 +61,7 @@
           <label for="restaurant-tel" class="col-sm-3 col-form-label text-secondary text-right">電話：</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" id="restaurant-tel" name="phone" placeholder="請輸入餐廳電話"
-              maxlength="12" value="{{restaurant.phone}}">
+              maxlength="12" value="{{restaurant.phone}}" required>
           </div>
         </div>
 
@@ -73,7 +69,7 @@
           <label for="restaurant-address" class="col-sm-3 col-form-label text-secondary text-right">地址：</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" id="restaurant-address" name="location" placeholder="請輸入餐廳地址"
-              value="{{restaurant.location}}">
+              value="{{restaurant.location}}" required>
           </div>
         </div>
 
@@ -81,7 +77,7 @@
           <label for="restaurant-map" class="col-sm-3 col-form-label text-secondary text-right ">google_map：</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" id="restaurant-map" name="google_map"
-              placeholder="請加入google_map連結：http://..." value="{{restaurant.google_map}}">
+              placeholder="請加入google_map連結：http://..." value="{{restaurant.google_map}}" required>
           </div>
         </div>
 
@@ -89,7 +85,7 @@
           <label for="restaurant-rating" class="col-sm-3 col-form-label text-secondary text-right">評價：</label>
           <div class="col-sm-9">
             <input type="number" class="form-control" id="restaurant-rating" name="rating" placeholder="請輸入餐廳評價" min="0"
-              max="5.0" step="0.1" value="{{restaurant.rating}}">
+              max="5.0" step="0.1" value="{{restaurant.rating}}" required>
           </div>
         </div>
 
@@ -97,7 +93,7 @@
           <label for="restaurant-description" class="col-sm-3 col-form-label text-secondary text-right">簡介：</label>
           <div class="col-sm-9">
             <textarea type="text" rows="3" class="form-control" id="restaurant-description" name="description"
-              placeholder="請輸入餐廳簡介">{{restaurant.description}}</textarea>
+              placeholder="請輸入餐廳簡介" value="{{restaurant.description}}" required></textarea>
           </div>
         </div>
 
