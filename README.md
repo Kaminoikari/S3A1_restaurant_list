@@ -1,6 +1,6 @@
 # Introduction
 
-學期2-3-A7 餐廳清單擴充CRUD功能
+學期2-3-A7 & A8 餐廳清單擴充CRUD功能 + 重構餐廳清單
 
 # Screenshot
 
