@@ -28,10 +28,10 @@ router.get('/search', (req, res) => {
       mode = { name: "desc" }
       break;
     case "類別":
-      mode = { category: 1 }
+      mode = { category: 'asc' }
       break;
     case "地區":
-      mode = { location: -1 }
+      mode = { location: 'asc' }
       break;
   }
 
@@ -41,11 +41,8 @@ router.get('/search', (req, res) => {
       .lean()
       .sort(mode)
       .then(restaurant => res.render('index', { restaurant }))
-
-  } else {
-
     
-
+    } else {
     Restaurant
       .find()
       .lean()
