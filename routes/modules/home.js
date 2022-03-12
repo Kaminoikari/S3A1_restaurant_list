@@ -9,31 +9,58 @@ router.get('/', (req, res) => {
     .find()
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => 
+      console.log(error))
 })
 
 // 搜尋欄
 router.get('/search', (req, res) => {
-
   const keywords = req.query.keywords
   const keyword = req.query.keywords.trim().toLowerCase()
+  const sort = req.query.sort
+  let mode = {}
 
-  Restaurant.find() // Current restaurant list
-    .lean()
-    .then(restaurant => {
-      if (!keywords) {
-        return res.render('index', { restaurant })
-      }
-      
-    const restaurantSearchResults = 
-    restaurant.filter((data) => { 
-      return data.name.toLowerCase().includes(keyword) || 
-      data.category.toLowerCase().includes(keyword) })
-      return restaurantSearchResults
+  switch(sort) {
+    case "A > Z":
+      mode = { name: "asc" }
+      break;
+    case "Z > A":
+      mode = { name: "desc" }
+      break;
+    case "類別":
+      mode = { category: 1 }
+      break;
+    case "地區":
+      mode = { location: -1 }
+      break;
+  }
+
+
+  if (!req.query.keywords) {
+    Restaurant.find()
+      .lean()
+      .sort(mode)
+      .then(restaurant => res.render('index', { restaurant }))
+
+  } else {
+
+    
+
+    Restaurant
+      .find()
+      .lean()
+      .then(restaurant => {
+        const filterRestaurantData = 
+        restaurant.filter((data) => { 
+          return data.name.toLowerCase().includes(keyword) || 
+          data.category.toLowerCase().includes(keyword) })
+        return filterRestaurantData
       })
 
-    .then((restaurantSearchResults) => res.render('index', { restaurant: restaurantSearchResults, keyword: keywords }))
-    .catch(error => console.log('error'))
+      .then((filterRestaurantData) => 
+      res.render('index', { restaurant: filterRestaurantData, keyword: keywords }))
+      .catch(error => console.log('error'))
+  }
 })
 
 module.exports = router

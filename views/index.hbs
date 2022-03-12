@@ -8,15 +8,18 @@
         <div class="input-group">
           <input type="text" name="keywords" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
-          <div class="input-group-append ">
+          
+          <select class="custom-select ml-3 col-4" id="sort" name="sort">
+            <option selected>排序...</option>
+            <option>A > Z</option>
+            <option>Z > A</option>
+            <option>類別</option>
+            <option>地區</option>
+          </select>
+          
+          <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
-          <select class="form-control ml-3 col-4" aria-label="sort" name="sort">
-            <option value="A > Z"> A > Z </option>
-            <option value="Z > A"> Z > A</option>
-            <option value="類別">類別</option>
-            <option value="地區">地區</option>
-          </select>
 
        </form>
 
