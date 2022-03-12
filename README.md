@@ -5,7 +5,8 @@
 # Screenshot
 
 
-![6B760E7C-CB3A-4356-BF96-E8ADB33401C0](https://user-images.githubusercontent.com/55652178/157954318-59e39b6e-f84b-41e7-8f51-5806120f21f2.jpeg)
+![9FAF5E91-0E94-4204-8974-61F5F429A6C8](https://user-images.githubusercontent.com/55652178/158036736-c3e037d0-66a8-4764-909c-25876b3d4e0a.jpeg)
+
 
 
 # Features
@@ -14,6 +15,7 @@
 * Showing detailed information of restaurants
 * User can edit restaurant detail
 * User can delete a restaurant
+* User can use dropdown menu to search restaurant based on specific order
 
 # Installation
 ### 1. Ensure you have already installed node.js and npm on your device
