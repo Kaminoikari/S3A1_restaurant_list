@@ -43,8 +43,7 @@ router.get('/search', (req, res) => {
       .then(restaurant => res.render('index', { restaurant }))
     
     } else {
-    Restaurant
-      .find()
+    Restaurant.find()
       .lean()
       .then(restaurant => {
         const filterRestaurantData = 
