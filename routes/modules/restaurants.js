@@ -10,9 +10,8 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const addItems = req.body
-  return Restaurant.create (addItems)
-    .then(() => res.redirect('/'))
+  return Restaurant.create (req.body) // 存入資料庫
+    .then(() => res.redirect('/')) // 新增完成後回首頁
     .catch((error) => console.log(error))
 })
 
@@ -44,7 +43,7 @@ router.put('/:id', (req, res) => {
 
     .then(restaurant => {
       restaurant = Object.assign(restaurant, req.body)
-      return restaurant.save()
+      return restaurant.save(req.body)
     })
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
