@@ -1,6 +1,6 @@
 # Introduction
 
-學期S1 餐廳清單擴充Login功能 + 重構餐廳清單
+學期S3 A1作業：餐廳清單擴充Login功能 + 重構餐廳清單
 
 
 # Screenshot
