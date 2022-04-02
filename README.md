@@ -1,21 +1,19 @@
 # Introduction
 
-學期2-3-A7 & A8 餐廳清單擴充CRUD功能 + 重構餐廳清單
+學期S3 A1作業：餐廳清單擴充Login功能 + 重構餐廳清單
+
 
 # Screenshot
 
 
-![9FAF5E91-0E94-4204-8974-61F5F429A6C8](https://user-images.githubusercontent.com/55652178/158036736-c3e037d0-66a8-4764-909c-25876b3d4e0a.jpeg)
-
 
 
 # Features
-* User can add new restaurant on the main page
-* Browse all restaurants functionality
-* Showing detailed information of restaurants
-* User can edit restaurant detail
-* User can delete a restaurant
-* User can use dropdown menu to search restaurant based on specific order
+* 運用第三方工具來強化 app 的功能
+* 使用 Passport 打造註冊功能
+* 串接 Facebook 第三方登入
+* 使用 bcrypt 保護使用者的密碼
+* 能打造「使用者認證」的基本體驗，包括動線、邏輯、資料設計以及例外處理
 
 # Installation
 ### 1. Ensure you have already installed node.js and npm on your device
