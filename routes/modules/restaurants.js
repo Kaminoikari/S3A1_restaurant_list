@@ -42,8 +42,8 @@ router.put('/:id', (req, res) => {
   return Restaurant.findById(id)
 
     .then(restaurant => {
-      restaurant = Object.assign(restaurant, req.body)
-      return restaurant.save(req.body)
+      restaurant = Object.assign(restaurant, req.params.id)
+      return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
