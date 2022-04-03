@@ -1,57 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant List CRUD</title>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Restaurant List CRUD</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'
+    />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link
+      rel='stylesheet'
+      href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'
+      integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+      crossorigin='anonymous'
+    />
+    <link rel='stylesheet' href='/stylesheets/index_style.css' />
 
+  </head>
 
+  <body>
+    <header>
+      <!-- navigation -->
+      <nav class='navbar navbar-light bg-light'>
+        <div class='container'>
 
-</head>
+          <a class='navbar-brand' href='/'>
+            <img
+              src='https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png'
+              width='30'
+              height='30'
+              class='d-inline-block align-top'
+              alt='我的餐廳清單'
+            />
+            {{#if isAuthenticated}}{{user.name}}'s餐廳清單
+            {{else}}
+              我的餐廳清單
+            {{/if}}
+          </a>
+          {{#if isAuthenticated}}
+            <a
+              class='btn btn-light mr-3'
+              style='background-color:#4c9cb9; color:white; width:120px; border-radius: 6px;'
+              href='/users/logout'
+            >
+              Logout
+            </a>
+          {{/if}}
+        </div>
 
+      </nav>
 
-<body>
-  <header>
-    <!-- navigation -->
-    <nav class="navbar navbar-light bg-light">
-      <div class="container">
+      <div class='banner'></div>
+    </header>
 
-        <a class="navbar-brand" href="/">
-          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-          我的餐廳清單
-        </a>
+    {{! partial template }}
+    {{{body}}}
 
-        <a class="btn btn-light mr-3" style="background-color:#d70f64; color:white; width:120px; border-radius: 6px;"
-          href="/restaurants/new">新增餐廳</a>
-      </div>
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'
+    ></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js'
+      integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+      crossorigin='anonymous'
+    ></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js'
+      integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+      crossorigin='anonymous'
+    ></script>
 
-    </nav>
-
-    <div class="banner"></div>
-  </header>
-
-
-  {{!-- partial template --}}
-  {{{body}}}
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-
-</body>
+  </body>
 
 </html>
