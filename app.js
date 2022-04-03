@@ -1,22 +1,23 @@
 const express = require("express")
+const session = require('express-session');
+const usePassport = require ('./config/passport')
 const exphbs = require("express-handlebars")
 const bodyParser = require('body-parser');
 const methodOverride = require ('method-override')
-const session = require ('express-session')
 const flash = require ('connect-flash')
 
 if (process.env.NODE_ENV !== 'production') {
-  require ('dotenv').config()
+  require('dotenv').config();
 }
 
 const mongoose = require("mongoose")
 const restaurantList = require("./models/restaurant")
-const app = express()
-const port = 3000
 
-const routes = require('./routes')
-const { config } = require ('dotenv')
+const routes = require('./routes');
 require('./config/mongoose.js');
+
+const app = express()
+const port = process.env.PORT || 3000
 
 // express template engine
 app.engine(".hbs", exphbs({ defaultLayout: "main", extname: '.hbs'}))
@@ -37,9 +38,20 @@ app.use( bodyParser.urlencoded({ extended: true }) )
 // 設定每一筆請求都會透過 methodOverride 進行前置處理
 app.use (methodOverride("_method"))
 
+usePassport(app)
+
+app.use(flash());
+app.use((req, res, next) => {
+  // 可以在這裡 console.log(req.user) 等資訊來觀察
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.warning_msg = req.flash('warning_msg');
+  next();
+});
+
 // 設定router
 app.use(routes)
-
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`)
