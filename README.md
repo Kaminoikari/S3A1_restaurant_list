@@ -23,7 +23,7 @@ git clone https://github.com/Kaminoikari/restaurant_list_CRUD.git
 ```
 ### 3. Initating and install all necessary external packages
 ```
-cd restaurant_list_CRUD
+cd S3A1_restaurant_list
 npm install
 ```
 ### 4. Set up seed data with MongoDB
@@ -46,6 +46,15 @@ http://localhost:3000
 # Requirement
 * Node.js v16.14.0
 * Express 4.16.4
-* Express-Handlebars 3.0.0
+* Express-handlebars 3.0.0
+* Express-session 1.17.1
+* Mongoose 5.9.7
+* Passport 0.4.1
+* Passport-local 1.0.0
+* Passport-facebook 3.0.0
 * Bootstrap 4.3.1
 * Font-awesome 5.8.1
+* dotenv 8.2.0
+* connect-flash 0.1.1
+* Bcrpyt.js 2.4.3
+* Body-parser 1.19.2
