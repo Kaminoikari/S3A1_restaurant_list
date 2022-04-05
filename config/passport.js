@@ -18,6 +18,7 @@ module.exports = (app) => {
               message: 'That email is not registered!',
             });
           }
+
           return bcrypt.compare(password, user.password).then((isMatch) => {
             if (!isMatch) {
               return done(null, false, {
@@ -30,6 +31,7 @@ module.exports = (app) => {
         .catch((err) => done(err, false));
     })
   );
+  // 設定Facebook登入策略
   passport.use(
     new FacebookStrategy(
       {
