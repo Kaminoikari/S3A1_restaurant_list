@@ -1,4 +1,4 @@
-const bcypt = require ('bcyptjs')
+const bcrypt = require ('bcryptjs')
 
 if (process.env.NODE_ENV !== 'production') {
   require ('dotenv').config ()
@@ -11,11 +11,13 @@ const db = require ('../../config/mongoose')
 
 const SEED_USER = [
   {
+    name: 'user1',
     email: 'user1@example.com',
     password: '12345678',
     restaurantId: [1, 2, 3],
   },
   {
+    name: 'user2',
     email: 'user2@example.com',
     password: '12345678',
     restaurantId: [4, 5, 6],
@@ -23,31 +25,31 @@ const SEED_USER = [
 ];
 
 db.once('open', () => {
-  return Promise.all(
-    Array.from(SEED_USER, (seedUser, i) => {
-      bcrypt
-        .genSalt(10)
-        .then((salt) => {
-          return bcrypt.hash(seedUser.password, salt);
+  for (let user_index = 0; user_index < SEED_USER.length; user_index++) {
+    // create users
+    bcrypt
+      .genSalt(10)
+      .then((salt) => bcrypt.hash(SEED_USER[user_index].password, salt))
+      .then((hash) =>
+        User.create({
+          name: SEED_USER[user_index].name,
+          email: SEED_USER[user_index].email,
+          password: hash,
         })
-        .then((hash) => {
-          return User.create({ email: seedUser.email, password: hash });
-        })
+      )
+      // create restaurant
+      .then((user) => {
+        const restaurants = [];
 
-        .then((user) => {
-          const userId = user._id;
-          let restaurants = [];
-          seedUser.restaurantId.forEach((id) => {
-            const restaurant = restaurantList.find((item) => item.id === id);
+        restaurantList.forEach((restaurant, res_index) => {
+          if (res_index >= 3 * user_index && res_index < 3 * (user_index + 1)) {
+            restaurant.userId = user._id;
             restaurants.push(restaurant);
-          });
-          restaurants.map((data) => (data.userId = userId));
-          return Restaurant.create(restaurants);
-        })
-        .then(() => {
-          console.log('restaurantSeeder done.');
-          process.exit(); 
+          }
         });
-    })
-  );
+        return Restaurant.create(restaurants);
+      })
+      .then(() => console.log('Seed data created!'))
+      .catch((err) => console.log(err));
+  }
 });
