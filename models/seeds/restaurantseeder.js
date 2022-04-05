@@ -1,4 +1,4 @@
-const bcypt = require ('bcypt')
+const bcypt = require ('bcyptjs')
 
 if (process.env.NODE_ENV !== 'production') {
   require ('dotenv').config ()
