@@ -49,7 +49,9 @@ db.once('open', () => {
         });
         return Restaurant.create(restaurants);
       })
-      .then(() => console.log('Seed data created!'))
-      .catch((err) => console.log(err));
+      .then(() => {
+        console.log('Seed data created!')
+        process.exit()
+      })    
   }
 });
