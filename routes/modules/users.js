@@ -16,13 +16,15 @@ router.post(
     const email = req.body.email;
     const password = req.body.password;
     if (!email || !password) {
-      req.flash('warning_msg', 'Email or Password is empty');
+      req.flash('warning_msg', 'Email & Password are required');
     }
     next();
   },
   passport.authenticate('local', {
     failureRedirect: '/users/login',
     successRedirect: '/',
+    failureMessage: true,
+    failureFlash: true
   })
 );
 
